@@ -1,0 +1,84 @@
+#include <stdio.h>
+#include<stdlib.h>
+struct node
+{
+    int data;
+    struct node *link;
+};
+struct node *top=0;
+void push()
+{
+    struct node *newnode;
+    newnode=(struct node *)malloc(sizeof(struct node));
+    printf("Enter the Data:");
+    scanf("%d",&newnode->data);
+    newnode->link=top;
+    top=newnode;
+}
+void pop()
+{
+    struct node *temp;
+    temp=top;
+    if(top==0)
+    {
+        printf("LIST IS EMPTY");
+    }
+    else
+    {
+        printf("POPPED item is %d\n",temp->data);
+        temp=temp->link;
+    }
+    free(temp);
+}
+void peek()
+{
+    if(top==0)
+    {
+        printf("LIST IS EMPTy");
+    }
+    else{
+        printf("peek is %d",top->data);
+    }
+}
+void display()
+{
+    struct node *temp;
+    temp=top;
+    if(top==0)
+    {
+        printf("List is empty");
+    }
+    else
+    {
+        while(temp!=0)
+        {
+            printf("Display the elemnet:%d",temp->data);
+            temp=temp->link;
+        }
+    }
+    
+}
+int main()
+{
+    int choice,i;
+    do{
+    printf("PRESS\n 1. PUSH\n 2. POP\n 3. PEEK\n 4. DISPLAY\n");
+    scanf("%d",&i);
+    switch(i)
+    {
+        case 1:
+        push();
+        break;
+        case 2:
+        pop();
+        break;
+        case 4:
+        display();
+        break;
+        default:
+        printf("Invalid position\n");
+    }printf("DO U WANT TO CONTINUE PRESS 1 ELSE 0\n");
+    scanf("%d",&choice);
+    }while(choice!=0);
+    return 0;
+}
